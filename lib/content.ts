@@ -278,14 +278,20 @@ const challenges: Block[] = [
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "PETIR REGEN 2026, BINUS University",
-    body: "Built a memory dump challenge requiring recovery of a 12-word mnemonic phrase from an Exodus wallet, plus analysis of RDP connection artifacts. Also built a malware challenge using a Telegram-based C2, requiring recovery of exfiltrated data.",
-    note: "C2 — the server malware quietly phones home to; here it was hidden inside ordinary Telegram traffic",
+    body: "Built a memory dump challenge requiring recovery of a 12-word mnemonic phrase from an Exodus wallet, plus analysis of RDP connection artifacts. Also built a malware challenge using a Telegram-based C2, requiring recovery of exfiltrated data, a captured-traffic challenge where the answer was the song playing through a pair of Bluetooth earbuds, and a warm-up image repair challenge to open the event.",
+    note: "C2 — the server malware quietly phones home to; here it was hidden inside ordinary Telegram traffic. A capture is a saved recording of network traffic, which is what gave the song away",
+  },
+  {
+    t: "entry",
+    title: "Reverse Engineering Problem Setter",
+    meta: "PETIR REGEN 2026, BINUS University",
+    body: "Built a Wordle clone that had to be taken apart to win it in a single guess.",
   },
   {
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "TECHFEST HIMTI 2026, BINUS University",
-    body: "Built a DPAPI-based Windows password recovery challenge to extract a 12-word mnemonic phrase from a TrustWallet.",
+    body: "Built a DPAPI-based Windows password recovery challenge to extract a 12-word mnemonic phrase from a TrustWallet. Also built a memory forensics challenge where a piece of malware had hidden itself in RAM and had to be found, identified, and the file it encrypted recovered.",
     note: "DPAPI — the part of Windows that encrypts saved passwords for you",
   },
   {
@@ -294,6 +300,13 @@ const challenges: Block[] = [
     meta: "IFEST CTF 2026, Universitas Padjadjaran",
     body: "Built a malware analysis challenge involving a crash dump, requiring heap walking to recover a decryption key.",
     note: "heap walking — stepping through a program's scratch memory to find what it left lying around",
+  },
+  {
+    t: "entry",
+    title: "Digital Forensics Problem Setter",
+    meta: "BeeCTF 2026, BINUS University",
+    body: "Built a challenge around a recording of USB traffic, where the work was turning the raw packets back into what had been typed on the keyboard.",
+    note: "a USB keyboard reports every key to the computer as it is pressed, so a recording of that traffic can be replayed back into the original typing",
   },
 ];
 
