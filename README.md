@@ -80,6 +80,15 @@ behaviour `listingFor` returning nothing gets you.
 
 ## Notes
 
+- `components/Boot.tsx` is the screen the site starts on. The log prints for
+  three seconds, then the notice about the two modes appears with a button;
+  the visitor leaves when they choose to, so the three seconds pace the log
+  rather than gate the notice. Every row is laid out from the first frame and
+  the pending ones are only made invisible, so the panel holds its height
+  instead of growing a line at a time under the reader. The checks are real —
+  the section count is read from `sections`, so it can't go stale. Under
+  `prefers-reduced-motion` it is all there at once rather than skipped,
+  because skipping it would skip the notice.
 - The site is a small desktop. `components/Workspace.tsx` owns the list of
   terminals; `TerminalWindow.tsx` is one window's chrome; `TerminalSession.tsx`
   is what's inside one. Each window has its own session, so two terminals can

@@ -830,6 +830,32 @@ export function detailBlocks(id: string, slug: string): Block[] | null {
 }
 
 /* ------------------------------------------------------------------ */
+/* Boot screen                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The splash before the desktop.
+ *
+ * The checks are real things this site does — the section count is read
+ * from `sections`, so the number on screen can't go stale. A boot log that
+ * lies about what it loaded is just a progress bar with extra steps.
+ */
+export const boot = {
+  title: `${identity.prompt.split(":")[0]} — boot`,
+  lines: [
+    { label: "mounting /home/wavess", value: "ok" },
+    { label: "loading sections", value: `${sections.length} found` },
+    { label: "building the filesystem", value: "ok" },
+    { label: "starting shell", value: "ready" },
+    { label: "waking the runner", value: "ok" },
+  ],
+  notice:
+    "This site runs in two modes. Pick guided if you want it simple, or manual if you're a Linux diehard — or if you just feel like it ;)",
+  action: "Continue",
+  hint: "or press Enter",
+};
+
+/* ------------------------------------------------------------------ */
 /* Landing copy                                                        */
 /* ------------------------------------------------------------------ */
 

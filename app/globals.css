@@ -513,6 +513,100 @@ body::after {
 }
 
 /* ================================================================== */
+/* Boot screen                                                        */
+/* ================================================================== */
+
+/* Above the bars and the bubble, which top out at 1000. It covers the
+   page on purpose: the notice is the one thing everyone should read. */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--page);
+  transition: opacity 320ms ease;
+}
+
+.boot-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-panel {
+  width: 100%;
+  max-width: 560px;
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+/* Each line arrives rather than appearing, so the log reads as printing. */
+.boot-line {
+  animation: boot-in 260ms ease both;
+}
+
+@keyframes boot-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+}
+
+.boot-notice {
+  animation: boot-in 320ms ease both;
+}
+
+/* Laid out but not drawn. The cursor opts back in, so a line still to
+   come shows one blinking where its result will land. */
+.boot-pending {
+  visibility: hidden;
+}
+
+.boot-cursor {
+  visibility: visible;
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--accent);
+  animation: boot-blink 1s steps(2, start) infinite;
+}
+
+@keyframes boot-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.boot-button {
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.boot-button:hover,
+.boot-button:focus-visible {
+  background: var(--tint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot,
+  .boot-line,
+  .boot-notice,
+  .boot-cursor {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .boot-panel {
+    padding: 22px 20px;
+  }
+}
+
+/* ================================================================== */
 /* Narrow screens                                                     */
 /* ================================================================== */
 
