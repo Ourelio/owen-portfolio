@@ -110,7 +110,7 @@ const SPEED = {
  * How present each layer is. The figure is the only thing at full weight.
  *
  * These were tuned when everything was one colour, where low alpha read as
- * depth. With a palette it just reads as washed out, so they're higher —
+ * depth. With a palette it just reads as washed out, so they're higher -
  * the centre haze is what keeps the scene off the text, not faintness.
  */
 /**
@@ -119,7 +119,7 @@ const SPEED = {
  * This used to be per-layer alpha, which is why nothing occluded anything:
  * a tree at 0.52 let the building behind it show straight through and the
  * whole scene read as glass. Solid things are drawn opaque now and distance
- * is carried by colour — atmospheric perspective, the way a painter does
+ * is carried by colour - atmospheric perspective, the way a painter does
  * it. Only actual light (coronas, lamp bloom) stays translucent.
  */
 const DEPTH = {
@@ -225,7 +225,7 @@ type Star = {
   size: number;
   bright: number;
   /** How much it flickers, and where in that flicker it starts. Most
-   *  don't flicker at all — a whole sky of them would be a fairground. */
+   *  don't flicker at all - a whole sky of them would be a fairground. */
   flicker: number;
   phase: number;
 };
@@ -236,7 +236,7 @@ type Cloud = {
   x: number;
   /** Height as a fraction of the sky, so it holds at any canvas size. */
   y: number;
-  /** A mass built from lobes, or — for a cirrus — nothing, and `streaks`
+  /** A mass built from lobes, or - for a cirrus - nothing, and `streaks`
    *  instead. The two are never both set. */
   puffs: Puff[];
   /** Thin horizontal lines with no body to them: `[dx, dy, length]`. */
@@ -244,7 +244,7 @@ type Cloud = {
   /** How many rows along the bottom sit in shadow. */
   shade: number;
   /** How far it reaches above its base, negative. Kept so the draw loop
-   *  doesn't re-derive it, and so a cloud can be held off the top edge —
+   *  doesn't re-derive it, and so a cloud can be held off the top edge -
    *  one clipped flat against it stops reading as a cloud. */
   top: number;
   /** Its own share of the wind, so the sky doesn't move in one sheet. */
@@ -308,7 +308,7 @@ function makeTrees(
 /**
  * The Little Prince, sat on the moon with his rose. Seven pixels across and
  * nine tall, which at this scale is about as small as a figure can be and
- * still read as one — so the hair, the scarf and the rose each get their
+ * still read as one - so the hair, the scarf and the rose each get their
  * own colour to do the identifying.
  *
  * H hair, K face, S scarf (trailing left, the way it's always drawn),
@@ -442,7 +442,7 @@ function makeCity(seed: number, count: number): Building[] {
     const x = Math.floor(r() * BAND);
     const w = 9 + Math.floor(r() * 17);
     // Capped so there is real sky above the skyline. Only the tallest few
-    // reach the moon at all, and then only its lower edge — which reads as
+    // reach the moon at all, and then only its lower edge - which reads as
     // a moon low over the city rather than as one that's been swallowed.
     const h = 40 + Math.floor(r() * 28);
     const cap = r() < 0.45 ? 4 + Math.floor(r() * 7) : 0;
@@ -525,7 +525,7 @@ function makeProps(seed: number): Prop[] {
 const STARS = makeStars(5, 155);
 const CLOUDS = makeClouds(19, 15);
 /* Each cloud goes to forBand on its own, because each moves at its own
-   share of the wind — one shared offset would slide the whole sky as a
+   share of the wind - one shared offset would slide the whole sky as a
    single sheet, and the band has to wrap per speed to stay seamless. */
 const CLOUD_SOLO: Cloud[][] = CLOUDS.map((c) => [c]);
 const CITY = makeCity(7, 11);
@@ -606,8 +606,8 @@ function pixelDisc(g: CanvasRenderingContext2D, cx: number, cy: number, r: numbe
  * A cloud, filled row by row rather than lobe by lobe.
  *
  * Each row takes the outer edges of whatever lobes reach it, so a handful
- * of circles comes out as one bumpy silhouette with a flat bottom — a
- * cloud — instead of a clump of overlapping balls. The rows stop at the
+ * of circles comes out as one bumpy silhouette with a flat bottom - a
+ * cloud - instead of a clump of overlapping balls. The rows stop at the
  * base, which is what flattens the underside.
  */
 function drawCloud(
@@ -657,7 +657,7 @@ function drawSun(
   body: string,
   pulse: number,
 ) {
-  // Corona stays translucent — it's light, not an object — and breathes a
+  // Corona stays translucent - it's light, not an object - and breathes a
   // little so the sun isn't a sticker.
   g.fillStyle = body;
   for (const [rr, a] of [
@@ -697,7 +697,7 @@ function drawSun(
 }
 
 /**
- * The moon, lit to whatever phase it actually is tonight — the same figure
+ * The moon, lit to whatever phase it actually is tonight - the same figure
  * the top bar is reporting, so the sky and the bar never disagree.
  *
  * The terminator is an ellipse, so for each row of pixels it cuts the disc
@@ -767,7 +767,7 @@ function drawMoon(
   }
 }
 
-/** Same idea as pixelDisc, squashed — for light pooling on the ground. */
+/** Same idea as pixelDisc, squashed - for light pooling on the ground. */
 function pixelEllipse(
   g: CanvasRenderingContext2D,
   cx: number,
@@ -1164,7 +1164,7 @@ export default function Runner() {
       // opaque, so each thing genuinely covers what it stands in front of.
 
       // Light mode is daytime, dark mode is night, so the theme decides
-      // which is up rather than a clock. Both drift on a slow lissajous —
+      // which is up rather than a clock. Both drift on a slow lissajous -
       // small enough that you only notice if you watch, enough that it
       // isn't a sticker. Drawn before everything, which is what lets the
       // skyline pass in front.

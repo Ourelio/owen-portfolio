@@ -221,7 +221,7 @@
  * fine grain over it. Both sit below the terminal (which is z-index 1), so
  * nothing crosses the reading surface.
  *
- * Quiet on purpose — you should notice it only once you go looking.
+ * Quiet on purpose - you should notice it only once you go looking.
  */
 
 body::before,
@@ -235,7 +235,7 @@ body::after {
 
 /*
  * Grain goes on ::before, which paints BEFORE the runner canvas. On ::after
- * it was the last child of <body> and landed on top of the scene — dark
+ * it was the last child of <body> and landed on top of the scene - dark
  * speckle over the artwork, quietly desaturating every colour in it.
  * Here it only gives the flat page some tooth.
  */
@@ -404,7 +404,7 @@ body::after {
 
 /*
  * A system bar across the very top. Solid rather than translucent, so it
- * reads as a bar and not as text floating on the forest — and so the type
+ * reads as a bar and not as text floating on the forest - and so the type
  * keeps its contrast in both themes. No dimming for the same reason.
  */
 .page-meta {

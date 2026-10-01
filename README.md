@@ -1,7 +1,7 @@
-# wavess — portfolio
+# wavess - portfolio
 
-A portfolio that is a terminal. One window in the middle of the page — with a
-title bar you can drag it by, minimise and fullscreen — and two ways to look
+A portfolio that is a terminal. One window in the middle of the page - with a
+title bar you can drag it by, minimise and fullscreen - and two ways to look
 around inside it: click through a sidebar, or type commands at a prompt.
 Nothing executes; the shell is simulated, and both modes read the same
 content.
@@ -57,7 +57,7 @@ Both modes pick it up with no other changes: guided mode lists it, and
 Writeups and the CTF challenges are the same shape: a directory you pick
 from, then one item printed in full. A section becomes one by setting
 `kind: "dir"` and adding a case to `listingFor` and `detailBlocks` in
-`content.ts`. Nothing else needs touching — the fake filesystem, the
+`content.ts`. Nothing else needs touching - the fake filesystem, the
 chooser in manual mode, and guided mode's detail panel all read those two
 functions rather than knowing section names, which is what stops a third
 list from being a third copy of the same code.
@@ -67,15 +67,15 @@ behaviour `listingFor` returning nothing gets you.
 
 ## The other swappable bits
 
-- **CV** — the `cv` blocks in `content.ts` are a placeholder. Replace them
+- **CV** - the `cv` blocks in `content.ts` are a placeholder. Replace them
   with the real thing as plain text; it stays in-page rather than becoming a
   PDF download.
-- **Avatar** — `components/Avatar.tsx` draws initials in a circle. Swap the
+- **Avatar** - `components/Avatar.tsx` draws initials in a circle. Swap the
   `<span>` for an `<img>` with the same classes.
-- **Org logos** — `public/logos/`, referenced by the `org` blocks in
+- **Org logos** - `public/logos/`, referenced by the `org` blocks in
   `content.ts`. They're downscaled to 128px; the originals were 10417px and
   4MB, which is not a thing to put in a bundle for a 26px mark.
-- **Projects** — ByteSec and HealthyEats have a repo link but no description
+- **Projects** - ByteSec and HealthyEats have a repo link but no description
   yet, so they print a short "coming soon" note. Add a `body` to remove it.
 
 ## Notes
@@ -85,7 +85,7 @@ behaviour `listingFor` returning nothing gets you.
   the visitor leaves when they choose to, so the three seconds pace the log
   rather than gate the notice. Every row is laid out from the first frame and
   the pending ones are only made invisible, so the panel holds its height
-  instead of growing a line at a time under the reader. The checks are real —
+  instead of growing a line at a time under the reader. The checks are real -
   the section count is read from `sections`, so it can't go stale. Under
   `prefers-reduced-motion` it is all there at once rather than skipped,
   because skipping it would skip the notice.
@@ -93,8 +93,8 @@ behaviour `listingFor` returning nothing gets you.
   terminals; `TerminalWindow.tsx` is one window's chrome; `TerminalSession.tsx`
   is what's inside one. Each window has its own session, so two terminals can
   be on different sections with different transcripts.
-- `lib/workspace.ts` holds the geometry — spawn position, drag clamping,
-  resize, and the tiled layout — as pure functions, so the tiling can be
+- `lib/workspace.ts` holds the geometry - spawn position, drag clamping,
+  resize, and the tiled layout - as pure functions, so the tiling can be
   reasoned about without a browser.
 - Window geometry is absolute (`fixed` with left/top/width/height). That makes
   floating, dragging, resizing and tiling all the same operation: change the
@@ -115,7 +115,7 @@ behaviour `listingFor` returning nothing gets you.
   offset, the inner one owns the open/close/resize animation. Both want to
   write `transform`, and an animation beats an inline style, so a dragged
   window would snap back to centre mid-animation if they shared an element.
-- Those three animations use `element.animate()` rather than CSS keyframes —
+- Those three animations use `element.animate()` rather than CSS keyframes -
   closing has to finish before the window is hidden, which needs a callback.
   They're skipped entirely under `prefers-reduced-motion`, and nothing
   animates on first load.
@@ -123,7 +123,7 @@ behaviour `listingFor` returning nothing gets you.
   `content.ts` is the order that ships.
 - Colours are CSS custom properties in `app/globals.css`, exposed to Tailwind
   through `@theme inline`. Change them in one place and both themes follow.
-- Base styles sit in `@layer base` deliberately — unlayered CSS outranks every
+- Base styles sit in `@layer base` deliberately - unlayered CSS outranks every
   Tailwind utility, which would quietly break things like `outline-none`.
 - The background is one low-resolution canvas filling the viewport, upscaled
   by a whole-number factor with `image-rendering: pixelated` so every scene
@@ -133,13 +133,13 @@ behaviour `listingFor` returning nothing gets you.
   front. Building windows are their own layer so the lights can be brighter
   than the walls, and are precomputed rather than rolled every frame.
 - Light mode is daytime and dark mode is night, so the theme decides whether
-  the sun or the moon is up — `--sky-night` is read with the colours. Both
+  the sun or the moon is up - `--sky-night` is read with the colours. Both
   drift on a slow lissajous so they aren't stickers; the sun's corona
   breathes with it.
 - Stars are simply out at night. A third of them flicker; a whole sky of
   flickering stars is a fairground.
-- Daytime gets clouds in their place, built from four shapes — a heap, a
-  stack, a lone tuft and streaks with no body — because one puff repeated
+- Daytime gets clouds in their place, built from four shapes - a heap, a
+  stack, a lone tuft and streaks with no body - because one puff repeated
   reads as wallpaper. Each is filled row by row rather than lobe by lobe,
   so a handful of circles comes out as one silhouette with a flat bottom
   instead of a clump of balls, and each drifts at its own share of the
@@ -154,8 +154,8 @@ behaviour `listingFor` returning nothing gets you.
   forest behind a figure running on the spot reads as a treadmill; moving the
   world instead reads as covering ground. Layer speed is depth.
 - Solid things in the scene are drawn OPAQUE, back to front, onto one
-  surface. Distance is carried by colour — each depth pre-washed toward the
-  sky, atmospheric-perspective style — not by alpha. Per-layer alpha was the
+  surface. Distance is carried by colour - each depth pre-washed toward the
+  sky, atmospheric-perspective style - not by alpha. Per-layer alpha was the
   old approach and it meant nothing ever occluded anything: you could see the
   skyline straight through a tree and the whole scene read as glass. Only
   actual light (coronas, lamp bloom) is still translucent.
@@ -163,18 +163,18 @@ behaviour `listingFor` returning nothing gets you.
   coloured neighbours merge into one silhouette once they're opaque.
 - Theme tokens come back from `getPropertyValue` **as authored**, so they
   arrive as hex while `cs.color` arrives as `rgb()`. The colour parser has to
-  handle both — miss that and every scene colour silently falls back to grey.
+  handle both - miss that and every scene colour silently falls back to grey.
 - The figure's near and far limbs use the same trick, plus an alpha threshold
   to hard on/off, so joints never double up.
   `prefers-reduced-motion` draws one held mid-stride pose.
 - The terminal's background is `--glass`, a translucent `--surface`, which is
   what lets the figure read through the window. Adjust that alpha and the
-  canvas's `opacity` together — they multiply.
+  canvas's `opacity` together - they multiply.
 - The page texture is two fixed pseudo-elements on `body`: `::before` is a
   fine display mesh built from `--scan`, `::after` is inline SVG grain. Both
   sit below the terminal, so nothing crosses the reading surface.
 - The scenery is hazed across the middle of the screen, where the terminal
-  sits — a `destination-in` gradient punched through each finished layer.
+  sits - a `destination-in` gradient punched through each finished layer.
   The figure is exempt, so he still shows through the glass while the trees
   keep out from behind the text. That, rather than a blanket opacity change,
   is what stops the window feeling stacked on the forest.

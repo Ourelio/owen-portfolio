@@ -285,7 +285,7 @@ export default function TerminalWindow({
 
   // The new-terminal button floats over the top-left of the workspace. A
   // window whose corner lands under it gives the title some room rather
-  // than having it clipped — which is every window once tiling kicks in.
+  // than having it clipped - which is every window once tiling kicks in.
   const underLauncher = rect.x < 48 && rect.y < 80;
 
   return (

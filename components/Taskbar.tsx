@@ -42,7 +42,7 @@ export default function Taskbar({
           No terminals open
           {canOpen ? (
             <>
-              {" — "}
+              {" - "}
               <button
                 type="button"
                 onClick={onNew}

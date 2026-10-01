@@ -22,7 +22,7 @@ import TerminalWindow from "./TerminalWindow";
  * are tiled. Each window wraps its own session, so two terminals can be
  * showing different things at once.
  *
- * A minimised window is hidden, never unmounted — unmounting would throw
+ * A minimised window is hidden, never unmounted - unmounting would throw
  * away its transcript and whichever section was open.
  */
 
@@ -55,7 +55,7 @@ export default function Workspace() {
   const [narrow, setNarrow] = useState(false);
   const [terms, setTerms] = useState<Term[]>([]);
   const [focus, setFocus] = useState(0);
-  /** Terminal ids, back to front. Stacking is this order, not a counter —
+  /** Terminal ids, back to front. Stacking is this order, not a counter -
    *  a counter climbs forever and would eventually outrank the two bars. */
   const [order, setOrder] = useState<number[]>([]);
 

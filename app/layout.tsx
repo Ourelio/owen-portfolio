@@ -3,7 +3,7 @@ import Runner from "@/components/Runner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Owen Ourelio Bong — wavess",
+  title: "Owen Ourelio Bong - wavess",
   description:
     "Cybersecurity student at BINUS University, focused on digital forensics. Writeups, CTF challenges, projects and how to get in touch.",
 };

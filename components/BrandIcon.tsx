@@ -5,8 +5,8 @@
  * to lib/content.ts later picks up its logo without anything else changing.
  *
  * Drawn in currentColor, single-tone. Brand colours would mean a different
- * hue per row — and Instagram's is a gradient, which this palette doesn't
- * do — so the marks take the link colour and the set stays even.
+ * hue per row - and Instagram's is a gradient, which this palette doesn't
+ * do - so the marks take the link colour and the set stays even.
  */
 
 type Brand = "email" | "github" | "linkedin" | "instagram" | "medium";

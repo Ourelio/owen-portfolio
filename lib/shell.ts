@@ -1,7 +1,7 @@
 /**
  * The command engine for manual mode.
  *
- * Nothing is executed — every command is pattern-matched and answered from
+ * Nothing is executed - every command is pattern-matched and answered from
  * lib/content.ts. Unknown input never dead-ends: it gets a guess and a
  * button to run that guess.
  */
@@ -51,7 +51,7 @@ export const welcome: Output[] = [
     kind: "lines",
     lines: [
       "You're in manual mode. Type something and press Enter, or click one of",
-      "the buttons under the input — they do exactly the same thing.",
+      "the buttons under the input. They do exactly the same thing.",
     ],
   },
   { kind: "lines", lines: [""] },
@@ -184,7 +184,7 @@ function fileOutput(path: string[]): Output[] | null {
 
 /**
  * Commands printed for the visitor to click have to work from wherever
- * they'll be run, so they're written relative to `from` — the directory
+ * they'll be run, so they're written relative to `from` - the directory
  * that will be current once this output lands.
  */
 function choicesFor(section: Section, from: Cwd): Output | null {
@@ -264,7 +264,7 @@ export function run(raw: string, cwd: Cwd): Result {
     return reply([
       { kind: "lines", lines: ["Everything you can type:"] },
       { kind: "help", rows: HELP_ROWS },
-      { kind: "muted", lines: ["Shorthand works too — about does the same as cat about.txt:"] },
+      { kind: "muted", lines: ["Shorthand works too, about does the same as cat about.txt:"] },
       { kind: "choices", items: sections.map((s) => ({ label: s.command, run: s.command })) },
       { kind: "muted", lines: ["None of this runs for real, so poke at anything you like."] },
     ]);
@@ -280,7 +280,7 @@ export function run(raw: string, cwd: Cwd): Result {
 
   if (cmd === "ls") {
     const target = operands[0] ? resolve(cwd, operands[0]) : cwd;
-    if (!target) return reply([{ kind: "lines", lines: ["That's as far up as it goes — you're already home."] }]);
+    if (!target) return reply([{ kind: "lines", lines: ["That's as far up as it goes, you're already home."] }]);
 
     const node = lookup(target);
     if (!node) return reply(nearest(operands[0], cwd));
@@ -315,7 +315,7 @@ export function run(raw: string, cwd: Cwd): Result {
     const arg = operands[0] ?? "~";
     const target = resolve(cwd, arg);
     if (!target) {
-      return reply([{ kind: "lines", lines: ["You're already home — there's nothing above it."] }], { cwd: [] });
+      return reply([{ kind: "lines", lines: ["You're already home, there's nothing above it."] }], { cwd: [] });
     }
 
     const node = lookup(target);

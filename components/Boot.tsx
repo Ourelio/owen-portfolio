@@ -7,7 +7,7 @@ import { boot } from "@/lib/content";
  * The screen the site starts on.
  *
  * A boot log prints itself a line at a time, then the notice about the two
- * modes appears with a button. The visitor leaves when they choose to —
+ * modes appears with a button. The visitor leaves when they choose to -
  * the three seconds are for the log, not a gate on reading the notice.
  *
  * Under prefers-reduced-motion the whole thing is there at once. Skipping

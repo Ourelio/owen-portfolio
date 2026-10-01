@@ -40,7 +40,7 @@ export type Tone = "gold" | "bronze" | "ok";
 /** One post held at an organisation. */
 export type Role = {
   title: string;
-  /** "Feb 2026 – Present" */
+  /** "Feb 2026 - Present" */
   period: string;
   /** "8 mos" */
   span: string;
@@ -67,7 +67,7 @@ export function promptFor(cwd = "~"): string {
 
 /**
  * The same prompt split into its parts, so it can be coloured the way a
- * shell colours PS1 — one tone for who and where you are, another for the
+ * shell colours PS1 - one tone for who and where you are, another for the
  * path, a third for the sigil.
  */
 export function promptParts(cwd = "~") {
@@ -83,7 +83,7 @@ export const windowTitle = identity.prompt.replace(/\$$/, "").replace(":", ": ")
 /* ------------------------------------------------------------------ */
 
 /** Said in two places, so it's written in one. */
-const DFIR_GLOSS = "DFIR — digital forensics and incident response: working out what happened on a machine after something went wrong";
+const DFIR_GLOSS = "DFIR - digital forensics and incident response: working out what happened on a machine after something went wrong";
 
 const about: Block[] = [
   {
@@ -92,7 +92,7 @@ const about: Block[] = [
   },
   {
     t: "note",
-    text: "digital forensics — recovering and making sense of evidence left behind on computers",
+    text: "digital forensics - recovering and making sense of evidence left behind on computers",
   },
   {
     t: "p",
@@ -100,7 +100,7 @@ const about: Block[] = [
   },
   {
     t: "note",
-    text: "CTF — a capture the flag competition, where teams race to solve security puzzles and find hidden strings called flags",
+    text: "CTF - a capture the flag competition, where teams race to solve security puzzles and find hidden strings called flags",
   },
   {
     t: "p",
@@ -130,19 +130,19 @@ const experience: Block[] = [
     roles: [
       {
         title: "Chairman",
-        period: "Feb 2026 \u2013 Present",
+        period: "Feb 2026 - Present",
         span: "8 mos",
         skills: "Digital Forensics, Reverse Engineering, Malware Analysis, Memory Analysis",
       },
       {
         title: "Member, Digital Forensics focus",
-        period: "Sep 2025 \u2013 Mar 2026",
+        period: "Sep 2025 - Mar 2026",
         span: "7 mos",
         skills: "Digital Forensics, Reverse Engineering, Memory Analysis",
       },
       {
         title: "Apprentice",
-        period: "May 2025 \u2013 Sep 2025",
+        period: "May 2025 - Sep 2025",
         span: "5 mos",
         skills: "CTF",
       },
@@ -156,20 +156,20 @@ const experience: Block[] = [
     roles: [
       {
         title: "Chairman",
-        period: "Oct 2025 \u2013 Present",
+        period: "Oct 2025 - Present",
         span: "1 yr",
         skills:
           "Leadership management, Time management, Public Speaking, Good Organization Governance",
       },
       {
         title: "Research and Development Activist",
-        period: "Feb 2025 \u2013 Mar 2026",
+        period: "Feb 2025 - Mar 2026",
         span: "1 yr 2 mos",
         skills: "CTF, C (programming language)",
       },
       {
         title: "Member",
-        period: "Sep 2024 \u2013 Feb 2025",
+        period: "Sep 2024 - Feb 2025",
         span: "6 mos",
         skills: "C (programming language)",
       },
@@ -178,13 +178,13 @@ const experience: Block[] = [
 ];
 
 /**
- * Reverse-chronological, hand-ordered. Do not sort this programmatically —
+ * Reverse-chronological, hand-ordered. Do not sort this programmatically -
  * the order here is the order that ships.
  */
 const achievements: Block[] = [
   {
     t: "entry",
-    title: "1st place — ITFEST Capture The Flag Competition",
+    title: "1st place - ITFEST Capture The Flag Competition",
     tone: "gold",
     meta: "Institut Pertanian Bogor (IPB)",
     tag: "08/2026",
@@ -193,12 +193,12 @@ const achievements: Block[] = [
     t: "entry",
     title: "BINUS Future Impact Creator Award",
     tone: "gold",
-    meta: "Category GOG (No Major/Minor Audit Finding) — BINUS University",
+    meta: "Category GOG (No Major/Minor Audit Finding) - BINUS University",
     tag: "05/2026",
   },
   {
     t: "entry",
-    title: "Dean's List — Computer Science Program",
+    title: "Dean's List - Computer Science Program",
     tone: "gold",
     meta: "BINUS University, Kemanggisan",
     // TODO: month unknown, so it sits with the other 2026 entries for now.
@@ -211,35 +211,35 @@ const achievements: Block[] = [
   },
   {
     t: "entry",
-    title: "3rd place — FINDIT Capture The Flag Competition",
+    title: "3rd place - FINDIT Capture The Flag Competition",
     tone: "bronze",
     meta: "Universitas Gadjah Mada (UGM)",
     tag: "05/2026",
   },
   {
     t: "entry",
-    title: "1st place — ARA 7.0 Capture The Flag Competition",
+    title: "1st place - ARA 7.0 Capture The Flag Competition",
     tone: "gold",
     meta: "Institut Teknologi Sepuluh Nopember (ITS)",
     tag: "02/2026",
   },
   {
     t: "entry",
-    title: "3rd place — INFENTRA Capture The Flag Competition",
+    title: "3rd place - INFENTRA Capture The Flag Competition",
     tone: "bronze",
     meta: "Telkom University Purwokerto",
     tag: "12/2025",
   },
   {
     t: "entry",
-    title: "3rd place — ITFEST Capture The Flag Competition",
+    title: "3rd place - ITFEST Capture The Flag Competition",
     tone: "bronze",
     meta: "Institut Pertanian Bogor (IPB)",
     tag: "08/2025",
   },
   {
     t: "entry",
-    title: "Finalist — IFEST Capture The Flag Competition",
+    title: "Finalist - IFEST Capture The Flag Competition",
     tone: "bronze",
     meta: "Universitas Atma Jaya Yogyakarta",
     tag: "08/2025",
@@ -264,28 +264,28 @@ const challenges: Block[] = [
     title: "Reverse Engineering Problem Setter",
     meta: "CSC CTF Competition 2025, BINUS University",
     body: "Built a Unity game where players had to reverse engineer the game logic to bypass a level and retrieve the flag.",
-    note: "reverse engineering — taking a finished program apart to work out how it behaves inside",
+    note: "reverse engineering - taking a finished program apart to work out how it behaves inside",
   },
   {
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "BeeCTF Competition 2025, BINUS University",
     body: "Built a memory dump challenge requiring basic Volatility plugin usage to extract files and recover a KeePass database.",
-    note: "memory dump — a frozen snapshot of everything a computer had in RAM at one moment; Volatility is the tool for reading one back",
+    note: "memory dump - a frozen snapshot of everything a computer had in RAM at one moment; Volatility is the tool for reading one back",
   },
   {
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "National Cyber Week Competition 2025, BINUS University",
     body: "Built a malware analysis challenge using PyArmor obfuscation, requiring dynamic analysis to solve. Also built a second malware analysis challenge centered on memory dump analysis.",
-    note: "obfuscation — code deliberately scrambled so it is hard to read; dynamic analysis means running it and watching what it does instead",
+    note: "obfuscation - code deliberately scrambled so it is hard to read; dynamic analysis means running it and watching what it does instead",
   },
   {
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "PETIR REGEN 2026, BINUS University",
     body: "Built a memory dump challenge requiring recovery of a 12-word mnemonic phrase from an Exodus wallet, plus analysis of RDP connection artifacts. Also built a malware challenge using a Telegram-based C2, requiring recovery of exfiltrated data, a captured-traffic challenge where the answer was the song playing through a pair of Bluetooth earbuds, and a warm-up image repair challenge to open the event.",
-    note: "C2 — the server malware quietly phones home to; here it was hidden inside ordinary Telegram traffic. A capture is a saved recording of network traffic, which is what gave the song away",
+    note: "C2 - the server malware quietly phones home to; here it was hidden inside ordinary Telegram traffic. A capture is a saved recording of network traffic, which is what gave the song away",
   },
   {
     t: "entry",
@@ -298,14 +298,14 @@ const challenges: Block[] = [
     title: "Digital Forensics Problem Setter",
     meta: "TECHFEST HIMTI 2026, BINUS University",
     body: "Built a DPAPI-based Windows password recovery challenge to extract a 12-word mnemonic phrase from a TrustWallet. Also built a memory forensics challenge where a piece of malware had hidden itself in RAM and had to be found, identified, and the file it encrypted recovered.",
-    note: "DPAPI — the part of Windows that encrypts saved passwords for you",
+    note: "DPAPI - the part of Windows that encrypts saved passwords for you",
   },
   {
     t: "entry",
     title: "Digital Forensics Problem Setter",
     meta: "IFEST CTF 2026, Universitas Padjadjaran",
     body: "Built a malware analysis challenge involving a crash dump, requiring heap walking to recover a decryption key.",
-    note: "heap walking — stepping through a program's scratch memory to find what it left lying around",
+    note: "heap walking - stepping through a program's scratch memory to find what it left lying around",
   },
   {
     t: "entry",
@@ -323,7 +323,7 @@ const challenges: Block[] = [
 /**
  * One challenge, as players were handed it.
  *
- * The brief only — no flag, no archive password, no download link. Those
+ * The brief only - no flag, no archive password, no download link. Those
  * live in the repo, which the section links to. Several briefs are in
  * Indonesian and stay that way: that is what competitors read, and
  * translating it would be reporting something that didn't happen. `gloss`
@@ -340,7 +340,7 @@ export type Challenge = {
   gloss?: string;
 };
 
-const PETIR = "PETIR Regen 2026 — Qualification";
+const PETIR = "PETIR Regen 2026 - Qualification";
 
 export const ctfChallenges: Challenge[] = [
   {
@@ -350,7 +350,7 @@ export const ctfChallenges: Challenge[] = [
     category: "Digital Forensics",
     difficulty: "Baby",
     brief: [{ t: "p", text: "pemanasan" }],
-    gloss: "“warm-up”, and the whole brief — the first challenge of the event. What came with it was one image file, and the work was getting it to open again.",
+    gloss: "“warm-up”, and the whole brief. It opened the event, so what came with it was one image file and the work was getting it to open again.",
   },
   {
     slug: "lagi-dengerin-lagu-apa-mas",
@@ -411,7 +411,7 @@ export const ctfChallenges: Challenge[] = [
   {
     slug: "malware-magang",
     name: "Malware Magang",
-    event: "National Cyber Week 2025 — Qualification",
+    event: "National Cyber Week 2025 - Qualification",
     category: "Digital Forensics",
     difficulty: "Hard",
     brief: [
@@ -428,7 +428,7 @@ export const ctfChallenges: Challenge[] = [
   {
     slug: "brian-lagi",
     name: "brian lagi",
-    event: "National Cyber Week 2025 — Final",
+    event: "National Cyber Week 2025 - Final",
     category: "Digital Forensics",
     difficulty: "Medium",
     brief: [
@@ -442,7 +442,7 @@ export const ctfChallenges: Challenge[] = [
   {
     slug: "sudah-lama",
     name: "sudah lama",
-    event: "BeeCTF 2026 — Qualification",
+    event: "BeeCTF 2026 - Qualification",
     category: "Digital Forensics",
     difficulty: "Medium",
     brief: [
@@ -451,12 +451,12 @@ export const ctfChallenges: Challenge[] = [
         text: "Sudah lama tidak ketemu soal seperti ini, semoga memperbanyak ilmu kalian, cemungut BeeCTF.",
       },
     ],
-    gloss: "“It's been a while since a problem like this one” — the whole brief. What came with it was a recording of USB traffic, and a keyboard reports every key it sends.",
+    gloss: "“It's been a while since a problem like this one”, which is the whole brief. What came with it was a recording of USB traffic, and a keyboard reports every key it sends.",
   },
   {
     slug: "gratisan-mulu-sih",
     name: "gratisan mulu sih",
-    event: "IFEST CTF 2026 — Qualification",
+    event: "IFEST CTF 2026 - Qualification",
     category: "Digital Forensics",
     difficulty: "Hard",
     brief: [
@@ -486,7 +486,7 @@ export const ctfChallenges: Challenge[] = [
   {
     slug: "capek-malware-mulu",
     name: "capek malware mulu",
-    event: "TechFest HIMTI 2026 — Final",
+    event: "TechFest HIMTI 2026 - Final",
     category: "Digital Forensics",
     difficulty: "Hard",
     brief: [
@@ -534,23 +534,23 @@ export function challengeBlocks(c: Challenge): Block[] {
 const teaching: Block[] = [
   {
     t: "p",
-    text: "I've taught people about CTF — again, mostly the DFIR side of it.",
+    text: "I've taught people about CTF, again mostly the DFIR side of it.",
   },
   { t: "note", text: DFIR_GLOSS },
   { t: "gap" },
   {
     t: "entry",
-    title: "CSC Cyber Class Tutor — File Carving",
+    title: "CSC Cyber Class Tutor - File Carving",
     meta: "BINUS University",
   },
   {
     t: "entry",
-    title: "Digital Forensics Tutor — Memory Analysis, OS Forensics, and Malware Analysis",
+    title: "Digital Forensics Tutor - Memory Analysis, OS Forensics, and Malware Analysis",
     meta: "SMK 22 Jakarta",
   },
   {
     t: "entry",
-    title: "Digital Forensics Tutor — File Carving",
+    title: "Digital Forensics Tutor - File Carving",
     meta: "SMK 1 Gombong",
   },
   {
@@ -560,13 +560,13 @@ const teaching: Block[] = [
   },
   {
     t: "entry",
-    title: "Digital Forensics Tutor — File Carving",
+    title: "Digital Forensics Tutor - File Carving",
     meta: "SMKN 1 Denpasar",
   },
   { t: "gap" },
   {
     t: "note",
-    text: "file carving — pulling deleted files back out of a disk by recognising how each file type starts and ends",
+    text: "file carving - pulling deleted files back out of a disk by recognising how each file type starts and ends",
   },
 ];
 
@@ -578,13 +578,13 @@ const articles: Block[] = [
       label: "medium.com/@owenbongs",
       href: "https://medium.com/@owenbongs/minidbg-understanding-minidumps-and-creating-a-custom-minidump-parser-part-1-869a1d4f0c01",
     },
-    note: "minidump — the small crash report Windows saves when a program falls over, and a surprisingly rich piece of evidence",
+    note: "minidump - the small crash report Windows saves when a program falls over, and a surprisingly rich piece of evidence",
   },
 ];
 
 /** Placeholder for now. Replace these blocks when the real CV is ready. */
 const cv: Block[] = [
-  { t: "p", text: "Full CV — coming soon." },
+  { t: "p", text: "Full CV coming soon." },
   {
     t: "note",
     text: "it'll live right here as plain text, not a PDF download",
@@ -631,7 +631,7 @@ export const projects: Project[] = [
     slug: "healthyeats",
     name: "HealthyEats",
     link: { label: "github.com/FRTX045/AI-Smester3-HealthyEats", href: "https://github.com/FRTX045/AI-Smester3-HealthyEats" },
-    body: "An AI project: photograph a plate of food and it reads back what's in it — protein, calories and the rest.",
+    body: "An AI project: photograph a plate of food and it reads back what's in it. Protein, calories and the rest.",
   },
 ];
 
@@ -639,7 +639,7 @@ export const projects: Project[] = [
 export function projectBlocks(p: Project): Block[] {
   const blocks: Block[] = [{ t: "entry", title: p.name, body: p.body, note: p.note, link: p.link }];
   if (!p.body) {
-    blocks.push({ t: "note", text: "write-up coming soon — the code is up there in the meantime" });
+    blocks.push({ t: "note", text: "write-up coming soon, the code is up there in the meantime" });
   }
   return blocks;
 }
@@ -653,7 +653,7 @@ const projectsSection: Block[] = projects.flatMap((p, i) =>
 /* ------------------------------------------------------------------ */
 
 export type Writeup = {
-  /** Also the filename inside writeups/ — `cat writeups/<slug>.txt`. */
+  /** Also the filename inside writeups/ - `cat writeups/<slug>.txt`. */
   slug: string;
   competition: string;
   challenge: string;
@@ -672,7 +672,7 @@ export type Writeup = {
  * Every entry below is a stub with the right shape and no real content yet.
  * To add a real writeup: keep the same fields, write `problem` as the
  * challenge statement, fill `body` with blocks, and delete `placeholder`.
- * Both modes pick it up with no other changes — guided mode lists it, and
+ * Both modes pick it up with no other changes - guided mode lists it, and
  * `cat writeups/<slug>.txt` prints it.
  */
 export const writeups: Writeup[] = [
@@ -705,9 +705,9 @@ export const writeups: Writeup[] = [
   },
 ];
 
-/** `HOLOGY — Retain` */
+/** `HOLOGY - Retain` */
 export function writeupTitle(w: Writeup): string {
-  return `${w.competition} — ${w.challenge}`;
+  return `${w.competition} - ${w.challenge}`;
 }
 
 export function findWriteup(slug: string): Writeup | undefined {
@@ -721,7 +721,7 @@ export function writeupBlocks(w: Writeup): Block[] {
     { t: "gap" },
   ];
   if (w.placeholder) {
-    blocks.push({ t: "note", text: "placeholder — the real writeup isn't in here yet" }, { t: "gap" });
+    blocks.push({ t: "note", text: "placeholder, the real writeup isn't in here yet" }, { t: "gap" });
   }
   blocks.push({ t: "entry", title: "The problem", body: w.problem }, { t: "gap" }, ...w.body);
   return blocks;
@@ -793,7 +793,7 @@ export type Listing = {
  * functions rather than naming sections, so adding a third directory is a
  * case here and nothing else.
  *
- * Projects is a directory too, but has no listing — it prints flat, and
+ * Projects is a directory too, but has no listing - it prints flat, and
  * returning nothing here is what keeps it that way.
  */
 export function listingFor(id: string): Listing[] {
@@ -836,12 +836,12 @@ export function detailBlocks(id: string, slug: string): Block[] | null {
 /**
  * The splash before the desktop.
  *
- * The checks are real things this site does — the section count is read
+ * The checks are real things this site does - the section count is read
  * from `sections`, so the number on screen can't go stale. A boot log that
  * lies about what it loaded is just a progress bar with extra steps.
  */
 export const boot = {
-  title: `${identity.prompt.split(":")[0]} — boot`,
+  title: `${identity.prompt.split(":")[0]} - boot`,
   lines: [
     { label: "mounting /home/wavess", value: "ok" },
     { label: "loading sections", value: `${sections.length} found` },
@@ -850,7 +850,7 @@ export const boot = {
     { label: "waking the runner", value: "ok" },
   ],
   notice:
-    "This site runs in two modes. Pick guided if you want it simple, or manual if you're a Linux diehard — or if you just feel like it ;)",
+    "This site runs in two modes. Pick guided if you want it simple, or manual if you're a Linux diehard, or if you just feel like it ;)",
   action: "Continue",
   hint: "or press Enter",
 };

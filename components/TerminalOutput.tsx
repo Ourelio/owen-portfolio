@@ -76,7 +76,7 @@ const TONE_MARK: Record<Tone, string> = {
 
 /**
  * One pixel block per entry, so a run of them reads as a list rather than
- * as a wall. A square because that is the shape this site is made of —
+ * as a wall. A square because that is the shape this site is made of -
  * the sprite, the window buttons, the taskbar swatches.
  */
 function Mark({ tone }: { tone?: Tone }) {
