@@ -254,6 +254,12 @@ const challenges: Block[] = [
   { t: "note", text: DFIR_GLOSS },
   { t: "gap" },
   {
+    t: "link",
+    label: "github.com/Ourelio/challenges-authored-by-me",
+    href: "https://github.com/Ourelio/challenges-authored-by-me",
+  },
+  { t: "gap" },
+  {
     t: "entry",
     title: "Reverse Engineering Problem Setter",
     meta: "CSC CTF Competition 2025, BINUS University",
@@ -309,6 +315,221 @@ const challenges: Block[] = [
     note: "a USB keyboard reports every key to the computer as it is pressed, so a recording of that traffic can be replayed back into the original typing",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* The challenges themselves                                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * One challenge, as players were handed it.
+ *
+ * The brief only — no flag, no archive password, no download link. Those
+ * live in the repo, which the section links to. Several briefs are in
+ * Indonesian and stay that way: that is what competitors read, and
+ * translating it would be reporting something that didn't happen. `gloss`
+ * says in English what the challenge asked for.
+ */
+export type Challenge = {
+  /** Also the filename inside challenges/ and the folder in the repo. */
+  slug: string;
+  name: string;
+  event: string;
+  category: "Digital Forensics" | "Reverse Engineering";
+  difficulty: "Baby" | "Medium" | "Hard";
+  brief: Block[];
+  gloss?: string;
+};
+
+const PETIR = "PETIR Regen 2026 — Qualification";
+
+export const ctfChallenges: Challenge[] = [
+  {
+    slug: "pemanasan",
+    name: "pemanasan",
+    event: PETIR,
+    category: "Digital Forensics",
+    difficulty: "Baby",
+    brief: [{ t: "p", text: "pemanasan" }],
+    gloss: "“warm-up”, and the whole brief — the first challenge of the event. What came with it was one image file, and the work was getting it to open again.",
+  },
+  {
+    slug: "lagi-dengerin-lagu-apa-mas",
+    name: "lagi dengerin lagu apa mas?",
+    event: PETIR,
+    category: "Digital Forensics",
+    difficulty: "Medium",
+    brief: [
+      {
+        t: "p",
+        text: "si mas itu lagi ngedengerin lagu pake tws bluetoothnya yang udah tua dan rusak, nah saya coba ngecapture trafficnya trus dapet. bantuin saya cari tau dong si mas sebenernya lagi dengerin lagu apasih?",
+      },
+    ],
+    gloss: "A man is listening to music through a pair of old, failing Bluetooth earbuds. The traffic between phone and earbuds was recorded. The answer is which song was playing.",
+  },
+  {
+    slug: "bitcoinnya-pepeng-dicuri",
+    name: "bitcoinnya pepeng dicuri",
+    event: PETIR,
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "si pepeng ada bitcoin nih, terus tiba-tiba bitcoinnya ilang, pepeng kebingungan, tolong bantu pepeng cari tau kok bisa bitcoinnya si pepeng tercuri. habis itu coba recover 12 mnemonic words dari platform cryptocurrencynya si pepeng.",
+      },
+    ],
+    gloss: "Pepeng's bitcoin disappeared. Work out how it was taken, then recover the twelve-word phrase that unlocks his wallet.",
+  },
+  {
+    slug: "kena-sudah-wakoor-rnd-kita",
+    name: "kena sudah wakoor rnd kita",
+    event: PETIR,
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "wakoor rnd kita lagi lagi kena malware loh, mohon coba cari tau itu malware datengnya dari mana. Coba dibalikkan file-file penting wakoor rnd. Flag ada di dalam salah satu file-file tersebut.",
+      },
+    ],
+    gloss: "The R&D lead has caught malware again. Find where it came from, and bring back the files it took.",
+  },
+  {
+    slug: "main-wordle",
+    name: "main wordle",
+    event: PETIR,
+    category: "Reverse Engineering",
+    difficulty: "Medium",
+    brief: [
+      {
+        t: "p",
+        text: "cara dapet flagnya that simple, menangin wordlenya dalam satu try.",
+      },
+    ],
+    gloss: "Win the Wordle in a single guess. Guessing won't do it, so the game has to be taken apart to find where it keeps the answer.",
+  },
+  {
+    slug: "malware-magang",
+    name: "Malware Magang",
+    event: "National Cyber Week 2025 — Qualification",
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "Brian slipped up again. He ran a shady “free money” program, and it turned out to be malware. His files are now fully encrypted. Can you restore them?",
+      },
+      {
+        t: "note",
+        text: "BECAREFUL WHEN ENGANGING WITH THE MALWARE! iya malware magang tapi tetep malware :(",
+      },
+    ],
+  },
+  {
+    slug: "brian-lagi",
+    name: "brian lagi",
+    event: "National Cyber Week 2025 — Final",
+    category: "Digital Forensics",
+    difficulty: "Medium",
+    brief: [
+      {
+        t: "p",
+        text: "intinya nih si Mr Brian lagi download dri google, trus passwordnya disimpen di password manager. Trus si Mr Brian nih ngeencrypt password dari password managernya pake encryptor, nah tapi tapi tapi tiba tiba ngecrash. Nah intinya yuk kita balikkan apa yang dia download dan coba cari tau apa isinya.",
+      },
+    ],
+    gloss: "Brian downloaded something and kept the password in a password manager. He then encrypted the manager's passwords, and the encryptor crashed partway. Recover what he downloaded and find out what was inside it.",
+  },
+  {
+    slug: "sudah-lama",
+    name: "sudah lama",
+    event: "BeeCTF 2026 — Qualification",
+    category: "Digital Forensics",
+    difficulty: "Medium",
+    brief: [
+      {
+        t: "p",
+        text: "Sudah lama tidak ketemu soal seperti ini, semoga memperbanyak ilmu kalian, cemungut BeeCTF.",
+      },
+    ],
+    gloss: "“It's been a while since a problem like this one” — the whole brief. What came with it was a recording of USB traffic, and a keyboard reports every key it sends.",
+  },
+  {
+    slug: "gratisan-mulu-sih",
+    name: "gratisan mulu sih",
+    event: "IFEST CTF 2026 — Qualification",
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "Mr. Paimian is back at it again, and predictably his files have vanished. It all started when he tried to download some free mod software from a sketchy online marketplace. After reaching out directly to the seller, his files suddenly disappeared, and strange changes began taking place across his system. Can you investigate the machine and figure out exactly what happened?",
+      },
+      {
+        t: "note",
+        text: "The malware in this challenge is live and functional. Perform all analysis within a secure, isolated sandbox environment. Saya tidak mau bertanggung jawab hehe",
+      },
+    ],
+  },
+  {
+    slug: "basic",
+    name: "Basic",
+    event: "TechFest HIMTI 2026",
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "Lets go to the basic of volatile memory. The malware hid itself, can you find the malware, find out its name, and decrypt the encrypted file? TO AVOID MISCONCEPTION, You do not have to find out where the malware came from, just find where is it, what is it, and decrypt the file 😉",
+      },
+    ],
+  },
+  {
+    slug: "capek-malware-mulu",
+    name: "capek malware mulu",
+    event: "TechFest HIMTI 2026 — Final",
+    category: "Digital Forensics",
+    difficulty: "Hard",
+    brief: [
+      {
+        t: "p",
+        text: "Karena sudah kehabisan ide membuat malware, mari kita bernostalgia sejenak ke masa lalu.",
+      },
+      {
+        t: "p",
+        text: "Tuan BrianPaimien, seorang penggemar cryptocurrency, ingin kembali mengakses wallet lamanya. Sayangnya, karena sudah terlalu lama tidak digunakan, ia lupa password wallet tersebut.",
+      },
+      {
+        t: "p",
+        text: "Untungnya, Tuan Brian masih mengingat satu hal: password wallet yang digunakan persis sama dengan password akun Windows miliknya.",
+      },
+      {
+        t: "p",
+        text: "Tolong bantu Tuan Brian mendapatkan kembali akses ke wallet tersebut.",
+      },
+    ],
+    gloss: "Brian forgot his crypto wallet password, but it was the same as his Windows account password. Get him back into the wallet.",
+  },
+];
+
+export function findChallenge(slug: string): Challenge | undefined {
+  return ctfChallenges.find((c) => c.slug === slug);
+}
+
+/** One challenge, printed in full. Shared by both modes. */
+export function challengeBlocks(c: Challenge): Block[] {
+  const blocks: Block[] = [
+    {
+      t: "entry",
+      title: c.name,
+      meta: `${c.category}, ${c.event}`,
+      tag: c.difficulty,
+    },
+    { t: "gap" },
+    ...c.brief,
+  ];
+  if (c.gloss) blocks.push({ t: "gap" }, { t: "note", text: c.gloss });
+  return blocks;
+}
 
 const teaching: Block[] = [
   {
@@ -539,7 +760,7 @@ export const sections: Section[] = [
   { id: "experience", label: "Experience", command: "experience", path: "experience.txt", kind: "file", blocks: experience },
   { id: "achievements", label: "Achievements & Awards", command: "achievements", path: "achievements.txt", kind: "file", blocks: achievements },
   { id: "writeups", label: "Writeups", command: "writeups", path: "writeups", kind: "dir", blocks: writeupsIntro },
-  { id: "challenges", label: "CTF Challenges I've Built", command: "challenges", path: "challenges.txt", kind: "file", blocks: challenges },
+  { id: "challenges", label: "CTF Challenges I've Built", command: "challenges", path: "challenges", kind: "dir", blocks: challenges },
   { id: "teaching", label: "Teaching", command: "teaching", path: "teaching.txt", kind: "file", blocks: teaching },
   { id: "projects", label: "Projects", command: "projects", path: "projects", kind: "dir", blocks: projectsSection },
   { id: "articles", label: "Articles", command: "articles", path: "articles.txt", kind: "file", blocks: articles },
@@ -549,6 +770,63 @@ export const sections: Section[] = [
 
 export function findSection(id: string): Section | undefined {
   return sections.find((s) => s.id === id);
+}
+
+/* ------------------------------------------------------------------ */
+/* Directory sections: list, then one item in full                     */
+/* ------------------------------------------------------------------ */
+
+/** One pickable row inside a directory section. */
+export type Listing = {
+  /** The filename inside the directory, without .txt. */
+  slug: string;
+  title: string;
+  /** Set to the right of the title. */
+  tag: string;
+  /** What the tag is, so the renderer can decide how to colour it. */
+  tagKind: "category" | "event";
+};
+
+/**
+ * Writeups and challenges are the same shape of thing: a list you choose
+ * from, then one item printed in full. Both modes drive off these two
+ * functions rather than naming sections, so adding a third directory is a
+ * case here and nothing else.
+ *
+ * Projects is a directory too, but has no listing — it prints flat, and
+ * returning nothing here is what keeps it that way.
+ */
+export function listingFor(id: string): Listing[] {
+  if (id === "writeups") {
+    return writeups.map((w) => ({
+      slug: w.slug,
+      title: writeupTitle(w),
+      tag: w.category,
+      tagKind: "category" as const,
+    }));
+  }
+  if (id === "challenges") {
+    return ctfChallenges.map((c) => ({
+      slug: c.slug,
+      title: c.name,
+      tag: c.event,
+      tagKind: "event" as const,
+    }));
+  }
+  return [];
+}
+
+/** One item from a directory section, printed. Null if there's no such item. */
+export function detailBlocks(id: string, slug: string): Block[] | null {
+  if (id === "writeups") {
+    const w = findWriteup(slug);
+    return w ? writeupBlocks(w) : null;
+  }
+  if (id === "challenges") {
+    const c = findChallenge(slug);
+    return c ? challengeBlocks(c) : null;
+  }
+  return null;
 }
 
 /* ------------------------------------------------------------------ */

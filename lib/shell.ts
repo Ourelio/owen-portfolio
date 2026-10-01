@@ -8,15 +8,16 @@
 
 import {
   Block,
+  Section,
+  ctfChallenges,
+  detailBlocks,
   eggs,
   findSection,
-  findWriteup,
   identity,
+  listingFor,
   projectBlocks,
   projects,
   sections,
-  writeupBlocks,
-  writeupTitle,
   writeups,
 } from "./content";
 import { Cwd, cwdLabel, listDir, lookup, resolve } from "./filesystem";
@@ -115,6 +116,10 @@ function vocabulary(cwd: Cwd): { word: string; run: string }[] {
     out.push({ word: `${p.slug}.txt`, run: `cat projects/${p.slug}.txt` });
     out.push({ word: p.slug, run: `cat projects/${p.slug}.txt` });
   }
+  for (const c of ctfChallenges) {
+    out.push({ word: `${c.slug}.txt`, run: `cat challenges/${c.slug}.txt` });
+    out.push({ word: c.slug, run: `cat challenges/${c.slug}.txt` });
+  }
   for (const n of listDir(cwd)) out.push({ word: n.name, run: n.kind === "dir" ? `cd ${n.name}` : `cat ${n.name}` });
   return out;
 }
@@ -164,13 +169,14 @@ function fileOutput(path: string[]): Output[] | null {
   if (name === eggs.curiousGeorgeFile) {
     return [{ kind: "lines", lines: [eggs.curiousGeorge] }];
   }
-  if (dir === "writeups") {
-    const w = findWriteup(name.replace(/\.txt$/, ""));
-    return w ? [{ kind: "blocks", blocks: writeupBlocks(w) }] : null;
-  }
   if (dir === "projects") {
     const p = projects.find((x) => x.slug === name.replace(/\.txt$/, ""));
     return p ? [{ kind: "blocks", blocks: projectBlocks(p) }] : null;
+  }
+  if (dir) {
+    const section = sections.find((x) => x.kind === "dir" && x.path === dir);
+    const blocks = section ? detailBlocks(section.id, name.replace(/\.txt$/, "")) : null;
+    if (blocks) return [{ kind: "blocks", blocks }];
   }
   const section = sections.find((s) => s.path === name);
   return section ? [{ kind: "blocks", blocks: section.blocks }] : null;
@@ -181,29 +187,28 @@ function fileOutput(path: string[]): Output[] | null {
  * they'll be run, so they're written relative to `from` — the directory
  * that will be current once this output lands.
  */
-function writeupChoices(from: Cwd): Output {
-  const inside = from.length === 1 && from[0] === "writeups";
+function choicesFor(section: Section, from: Cwd): Output | null {
+  const items = listingFor(section.id);
+  if (!items.length) return null;
+  const inside = from.length === 1 && from[0] === section.path;
   return {
     kind: "choices",
     lead: "Pick one to read it:",
-    items: writeups.map((w) => ({
-      label: writeupTitle(w),
-      run: inside ? `cat ${w.slug}.txt` : `cat writeups/${w.slug}.txt`,
+    items: items.map((i) => ({
+      label: i.title,
+      run: inside ? `cat ${i.slug}.txt` : `cat ${section.path}/${i.slug}.txt`,
     })),
   };
 }
 
 function dirOutput(path: string[], from: Cwd): Output[] {
   const label = path.join("/");
-  if (label === "writeups") {
-    const section = sections.find((s) => s.id === "writeups")!;
-    return [{ kind: "blocks", blocks: section.blocks }, writeupChoices(from)];
-  }
-  if (label === "projects") {
-    const section = sections.find((s) => s.id === "projects")!;
-    return [{ kind: "blocks", blocks: section.blocks }];
-  }
-  return [];
+  const section = sections.find((s) => s.kind === "dir" && s.path === label);
+  if (!section) return [];
+  const choices = choicesFor(section, from);
+  return choices
+    ? [{ kind: "blocks", blocks: section.blocks }, choices]
+    : [{ kind: "blocks", blocks: section.blocks }];
 }
 
 /* ------------------------------------------------------------------ */
@@ -213,7 +218,7 @@ function dirOutput(path: string[], from: Cwd): Output[] {
 /** Never empty. Manual mode has to be completable by clicking alone. */
 export function chipsFor(cwd: Cwd): string[] {
   if (cwd.length) return ["ls", ...listDir(cwd).map((n) => (n.kind === "dir" ? `cd ${n.name}` : `cat ${n.name}`)), "cd ..", "help"];
-  return ["help", "ls", "about", "writeups", "projects", "contact", "guided"];
+  return ["help", "ls", "about", "writeups", "challenges", "projects", "contact", "guided"];
 }
 
 /* ------------------------------------------------------------------ */
@@ -382,9 +387,10 @@ export function run(raw: string, cwd: Cwd): Result {
     const section = sections.find((s) => s.command === cmd);
     if (section) {
       if (section.kind === "dir") {
+        const choices = choicesFor(section, cwd);
         return reply([
           { kind: "blocks", blocks: section.blocks },
-          ...(section.id === "writeups" ? [writeupChoices(cwd)] : []),
+          ...(choices ? [choices] : []),
         ]);
       }
       return reply([{ kind: "blocks", blocks: section.blocks }]);

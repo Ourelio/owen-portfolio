@@ -6,20 +6,26 @@
  * disagree with what the sections actually are.
  */
 
-import { eggs, projects, sections, writeups } from "./content";
+import { ctfChallenges, eggs, projects, sections, writeups } from "./content";
 
 export type FsNode =
   | { kind: "file"; name: string; hidden?: boolean }
   | { kind: "dir"; name: string; children: FsNode[] };
 
-const writeupFiles: FsNode[] = writeups.map((w) => ({ kind: "file", name: `${w.slug}.txt` }));
-const projectFiles: FsNode[] = projects.map((p) => ({ kind: "file", name: `${p.slug}.txt` }));
+const txt = (slug: string): FsNode => ({ kind: "file", name: `${slug}.txt` });
+
+/** What's inside each directory section, keyed by its path. */
+const dirChildren: Record<string, FsNode[]> = {
+  writeups: writeups.map((w) => txt(w.slug)),
+  projects: projects.map((p) => txt(p.slug)),
+  challenges: ctfChallenges.map((c) => txt(c.slug)),
+};
 
 export const home: FsNode[] = [
   { kind: "file", name: eggs.curiousGeorgeFile, hidden: true },
   ...sections.map<FsNode>((s) =>
     s.kind === "dir"
-      ? { kind: "dir", name: s.path, children: s.path === "writeups" ? writeupFiles : projectFiles }
+      ? { kind: "dir", name: s.path, children: dirChildren[s.path] ?? [] }
       : { kind: "file", name: s.path },
   ),
 ];

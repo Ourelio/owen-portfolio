@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  findWriteup,
-  identity,
-  sections,
-  writeupBlocks,
-  writeupTitle,
-  writeups,
-} from "@/lib/content";
+import { detailBlocks, identity, listingFor, sections } from "@/lib/content";
 import Avatar from "./Avatar";
 import Blocks, { Prompt } from "./TerminalOutput";
 
@@ -36,23 +29,26 @@ function WayOut({ onManual, onHome }: { onManual: () => void; onHome: () => void
 
 export default function GuidedMode({ onManual, onHome }: { onManual: () => void; onHome: () => void }) {
   const [activeId, setActiveId] = useState(sections[0].id);
-  const [writeupSlug, setWriteupSlug] = useState<string | null>(null);
+  const [detailSlug, setDetailSlug] = useState<string | null>(null);
   const panel = useRef<HTMLDivElement>(null);
 
   const section = sections.find((s) => s.id === activeId)!;
-  const writeup = writeupSlug ? findWriteup(writeupSlug) : undefined;
+  // Directory sections are a list you pick from; everything else prints
+  // its blocks and that's the whole of it.
+  const listing = listingFor(section.id);
+  const detail = detailSlug ? detailBlocks(section.id, detailSlug) : null;
 
   // A new section starts at the top, the way fresh output would.
   useEffect(() => {
     panel.current?.scrollTo({ top: 0 });
-  }, [activeId, writeupSlug]);
+  }, [activeId, detailSlug]);
 
   function pick(id: string) {
     setActiveId(id);
-    setWriteupSlug(null);
+    setDetailSlug(null);
   }
 
-  const command = writeup ? `cat writeups/${writeup.slug}.txt` : section.command;
+  const command = detail ? `cat ${section.path}/${detailSlug}.txt` : section.command;
 
   return (
     <div className="flex min-h-0 flex-1 flex-col md:flex-row">
@@ -101,35 +97,39 @@ export default function GuidedMode({ onManual, onHome }: { onManual: () => void;
         <Prompt command={command} />
 
         <div className="mt-5">
-          {writeup ? (
+          {detail ? (
             <>
-              <Blocks blocks={writeupBlocks(writeup)} />
+              <Blocks blocks={detail} />
               <button
                 type="button"
-                onClick={() => setWriteupSlug(null)}
+                onClick={() => setDetailSlug(null)}
                 className="mt-7 text-muted hover:text-accent"
               >
-                Back to all writeups
+                Back to the list
               </button>
             </>
-          ) : section.id === "writeups" ? (
+          ) : listing.length ? (
             <>
               <Blocks blocks={section.blocks} />
               <ul className="mt-5 space-y-1">
-                {writeups.map((w) => (
-                  <li key={w.slug}>
+                {listing.map((item) => (
+                  <li key={item.slug}>
                     <button
                       type="button"
-                      onClick={() => setWriteupSlug(w.slug)}
+                      onClick={() => setDetailSlug(item.slug)}
                       className="group flex w-full max-w-[64ch] items-baseline justify-between gap-6 border border-line px-4 py-3 text-left hover:border-accent hover:bg-tint"
                     >
-                      <span className="text-ink">{writeupTitle(w)}</span>
+                      <span className="min-w-0 text-ink">{item.title}</span>
                       <span
                         className={`shrink-0 ${
-                          w.category === "Digital Forensics" ? "text-ok" : "text-link"
+                          item.tagKind === "event"
+                            ? "text-meta"
+                            : item.tag === "Digital Forensics"
+                              ? "text-ok"
+                              : "text-link"
                         }`}
                       >
-                        {w.category}
+                        {item.tag}
                       </span>
                     </button>
                   </li>

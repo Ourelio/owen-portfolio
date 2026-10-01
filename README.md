@@ -52,6 +52,19 @@ fields, fill in `problem` and `body`, and delete `placeholder: true`.
 Both modes pick it up with no other changes: guided mode lists it, and
 `cat writeups/<slug>.txt` prints it.
 
+## Adding a section that is a list
+
+Writeups and the CTF challenges are the same shape: a directory you pick
+from, then one item printed in full. A section becomes one by setting
+`kind: "dir"` and adding a case to `listingFor` and `detailBlocks` in
+`content.ts`. Nothing else needs touching — the fake filesystem, the
+chooser in manual mode, and guided mode's detail panel all read those two
+functions rather than knowing section names, which is what stops a third
+list from being a third copy of the same code.
+
+Projects is a directory with no listing, so it prints flat. That is the
+behaviour `listingFor` returning nothing gets you.
+
 ## The other swappable bits
 
 - **CV** — the `cv` blocks in `content.ts` are a placeholder. Replace them
